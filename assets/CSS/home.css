@@ -1,0 +1,98 @@
+body{
+    background-color: #f2f2f2;
+    margin : 0;
+    padding : 0;
+}
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container ul li{
+    list-style: none;
+    margin : 10px;
+    padding : 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 10px #000;
+}
+.delete-btn{
+    background-color: #f05252;
+    border-radius: 10px;
+    color: #fff;
+    padding: 5px;
+    cursor: pointer;
+}
+.heading{
+    font-size: 3em;
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.contact-form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+form{
+    text-align: center;
+}
+input{
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+input[type="text"] {
+    display: block;
+    margin: 40px auto 0 auto;
+    padding: 10px 20px;
+    max-width: 50%;
+}
+p{
+    font-size: 1.2em;
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 20px;
+    text-align: center;
+}
+#searchResults{
+    max-width: 600px;
+    width: 50%;
+    margin: 20px auto 0 auto;
+    color: #000;
+    background-color: #ccc;
+}
+button[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 6px 9px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    font-size: 17px; 
+    outline-style:initial;
+    border-radius: 100px;
+    cursor: pointer;
+}
+@media only screen and (max-width: 500px) {
+    input {
+        width: 100%;
+        text-align: center;
+        margin: 8px 8px;
+    }
+  }
+    @media only screen and (max-width: 320px) {
+    .heading{
+        font-size: 2em;
+    }
+    }

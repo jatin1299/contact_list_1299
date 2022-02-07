@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+         <%= title %> 
+        </title>
+        <link rel="stylesheet" href="/CSS/home.css">
+        <script src="https://kit.fontawesome.com/05d8c566ae.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1 class="heading">
+        <i class="fas fa-id-badge"></i>
+        Contacts List
+    </h1>
+    <input type="text" id="search-box" onkeyup="sendData(this)" placeholder="Search Contact....">
+    <section id="searchResults"></section>
+    <div class="contact-form container">
+        <form action="/contact" method="post">
+            <input type="text" name="name" placeholder="Enter Name" required>
+            <input type="email" name="email" placeholder="Enter Email" required>
+            <input type="number" name="phone" placeholder="Enter Mobile Number" required>
+            <button type="submit"><i class="fas fa-plus-circle"></i></button>
+        </form>
+    </div>
+    
+    <div class="container">
+        <ul>
+            <% for(let i = 0; i < contacts.length; i++) { %>
+                <li>
+                    <div>
+                        <p>Name:- <%= contacts[i].name %></p> 
+                        <p>E-mail:- <%= contacts[i].email %></p>
+                        <p>Phone:- <%= contacts[i].phone %></p>
+                    </div>
+                    <div>
+                     <a href="/delete-contact/?id=<%= contacts[i]._id %>" class="delete-btn">
+                         <i class="fas fa-user-minus"></i>
+                        </a>
+                    </div>
+                </li> 
+            <% } %>
+        </ul>
+    </div>
+
+<script>
+    function sendData(e){
+        const searchResults = document.getElementById('searchResults');  //searchResults is the section where the search results will be displayed
+        let match = e.value.match(/^[a-zA-Z]*/);
+        let match2 = e.value.match(/\s*/);
+        if(match2[0] === e.value){
+            searchResults.innerHTML = '';
+            return;
+        }
+        if(match[0] === e.value){
+            fetch('getContacts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                payload: e.value
+            })
+        }).then(res => res.json()).then(data =>{
+            let payload = data.payload;
+            searchResults.innerHTML = '';
+            if(payload.length < 1){
+                searchResults.innerHTML = '<p>No results found</p>';
+                return;
+            }
+            payload.forEach((item, index) => {
+                if(index > 0) searchResults.innerHTML += '<hr>';
+                searchResults.innerHTML += `<p>${item.name}</p>`;
+            });
+        });
+        return;
+        }
+        searchResults.innerHTML = '';
+    }
+</script>
+
+</body>
+</html>
